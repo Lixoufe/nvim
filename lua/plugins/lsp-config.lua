@@ -30,18 +30,22 @@ return {
       mason_lspconfig.setup({
         ensure_installed = { "pyright", "lua_ls", "clangd", "rust_analyzer" }
       })
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         capabilities = capabilities
       })
-      lspconfig.clangd.setup({
+      vim.lsp.config('clangd', {
         capabilities = capabilities
       })
-      lspconfig.pyright.setup({
+      vim.lsp.config('pyright', {
         capabilities = capabilities
       })
-      lspconfig.rust_analyzer.setup({
+      vim.lsp.config('rust_analyzer', {
         capabilities = capabilities
+      })
+
+      vim.diagnostic.enable = true
+      vim.diagnostic.config({
+        virtual_lines = true,
       })
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
